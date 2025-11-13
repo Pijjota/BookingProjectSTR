@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 from core.settings.environments import Environment
 
-load_dotenv(API)
+load_dotenv()
 
 class APIClient:
     def __init__(self):
