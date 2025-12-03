@@ -35,8 +35,11 @@ def test_create_booking_missing_required_field(api_client, generate_random_booki
     booking_data = generate_random_booking_data.copy()
     del booking_data["firstname"]
 
-    response = api_client.session.post(f"{api_client.base_url}/booking", json=booking_data)
-    assert response.status_code in [400, 500]
+    with pytest.raises(requests.exceptions.HTTPError) as exc_info:
+        api_client.create_booking(booking_data)
+
+    status_code = exc_info.value.response.status_code
+    assert status_code in [400, 500], f"Expected 400 or 500, got {status_code}"
 
 
 @allure.feature('Test Booking') # БАГ ПРИХОДИТ 200 КОД
@@ -45,8 +48,11 @@ def test_create_booking_totalprice(api_client, generate_random_booking_data):
     booking_data = generate_random_booking_data.copy()
     booking_data["totalprice"] = "The one"
 
-    response = api_client.session.post(f"{api_client.base_url}/booking", json=booking_data)
-    assert response.status_code in [400, 500]
+    with pytest.raises(requests.exceptions.HTTPError) as exc_info:
+        api_client.create_booking(booking_data)
+
+    status_code = exc_info.value.response.status_code
+    assert status_code in [400, 500], f"Expected 400 or 500, got {status_code}"
 
 
 @allure.feature('Test Booking') # БАГ ПРИХОДИТ 200 КОД
@@ -55,8 +61,11 @@ def test_create_booking_empty_firstname(api_client, generate_random_booking_data
     booking_data = generate_random_booking_data.copy()
     booking_data["firstname"] = ""
 
-    response = api_client.session.post(f"{api_client.base_url}/booking", json=booking_data)
-    assert response.status_code in [400, 500]
+    with pytest.raises(requests.exceptions.HTTPError) as exc_info:
+        api_client.create_booking(booking_data)
+
+    status_code = exc_info.value.response.status_code
+    assert status_code in [400, 500], f"Expected 400 or 500, got {status_code}"
 
 
 @allure.feature('Test Booking')
