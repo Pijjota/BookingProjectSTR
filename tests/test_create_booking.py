@@ -32,7 +32,7 @@ def test_create_booking_with_custom_data(api_client, generate_random_booking_dat
 @allure.feature('Test Booking')
 @allure.story('Negative: missing required field - firstname')
 def test_create_booking_missing_required_field(api_client, generate_random_booking_data):
-    booking_data = generate_random_booking_data.copy()
+    booking_data = generate_random_booking_data
     del booking_data["firstname"]
 
     with pytest.raises(requests.exceptions.HTTPError) as exc_info:
@@ -91,7 +91,7 @@ def test_create_booking_invalid_json(api_client):
 @allure.feature('Test Booking')
 @allure.story('Negative: create booking with invalid headers')
 def test_create_booking_invalid_headers(api_client, generate_random_booking_data):
-    booking_data = generate_random_booking_data.copy()
+    booking_data = generate_random_booking_data
 
     response = requests.post(url=f"{api_client.base_url}/booking", json=booking_data, headers={"Content-Type": "application/xml"})
 
