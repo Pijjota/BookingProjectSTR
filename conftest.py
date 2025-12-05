@@ -19,8 +19,8 @@ def booking_dates():
     checkout_date = checkin_date + timedelta(days=5)
 
     return {
-        "checkin": checkin_date.strftime('%Y-%M-%D'),
-        "checkout": checkout_date.strftime('%Y-%M-%D')
+        "checkin": checkin_date.strftime('%Y-%m-%d'),
+        "checkout": checkout_date.strftime('%Y-%m-%d')
     }
 
 
@@ -38,7 +38,7 @@ def generate_random_booking_data(booking_dates):
         "lastname": lastname,
         "totalprice": totalprice,
         "depositpaid": depositpaid,
-        "booking_dates": booking_dates,
+        "bookingdates": booking_dates,
         "additionalneeds": additionalneeds
     }
 
